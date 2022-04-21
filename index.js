@@ -155,8 +155,16 @@ class Instructor extends Lambdasian {
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`
   }
-
-
+  changeGrade(student){
+    let base = 100 - student.grade;
+    let randomNumber = Math.floor(Math.random()*base);
+    let addOrSub = Math.floor(Math.random()*2)
+    if (addOrSub === 0){
+      student.grade -= randomNumber;
+    } else {
+      student.grade += randomNumber;
+    }
+  }
 }
 
 /*
@@ -182,6 +190,7 @@ class Student extends Lambdasian {
     this.className = props.className;
     this.favSubjects = props.favSubjects;
     this.grade = 99;
+    this.graduate = false;
   }
   listSubjects(){
     return `Loving ${this.favSubjects.join(',')}!`
@@ -191,6 +200,11 @@ class Student extends Lambdasian {
   }
   sprintChallenge(subject){
     return `${this.name} has begun sprint challenge on ${subject}`
+  }
+  graduateStudent(){
+    if (this.grade >= 70){
+      this.graduate = true;
+    }
   }
    
 }
